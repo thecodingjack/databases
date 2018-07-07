@@ -1,4 +1,6 @@
--- CREATE DATABASE chat;
+DROP DATABASE IF EXISTS chat;
+
+CREATE DATABASE chat;
 
 USE chat;
 
@@ -10,21 +12,20 @@ CREATE TABLE users (
   username varchar(35) NOT NULL
 );
 
-CREATE TABLE rooms (
-  id int NOT NULL,
-  PRIMARY KEY (id),
-  roomname varchar(35) NOT NULL
-);
+-- CREATE TABLE rooms (
+--   id int NOT NULL,
+--   PRIMARY KEY (id),
+--   roomname varchar(35) NOT NULL
+-- );
 
 CREATE TABLE messages (
-  id int NOT NULL,
+  id int NOT NULL AUTO_INCREMENT,
   createdAt timestamp,
-  textMessage varchar(255) NOT NULL,
-  PRIMARY KEY (id),
-  roomId int NOT NULL,
-  FOREIGN KEY (roomId) REFERENCES rooms(id),
-  userId int NOT NULL, 
-  FOREIGN KEY (userId) REFERENCES users(id)
+  message varchar(255) NOT NULL,
+  roomname varchar(255) NOT NULL,
+  PRIMARY KEY (id)
+  -- userId int NOT NULL, 
+  -- FOREIGN KEY (userId) REFERENCES users(id)
 );
 
 /* Create other tables and define schemas for them here! */

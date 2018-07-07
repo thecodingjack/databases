@@ -7,7 +7,7 @@ USE chat;
 
 
 CREATE TABLE users (
-  id int NOT NULL,
+  id int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (id),
   username varchar(35) NOT NULL
 );
@@ -21,6 +21,7 @@ CREATE TABLE users (
 CREATE TABLE messages (
   id int NOT NULL AUTO_INCREMENT,
   createdAt timestamp,
+  username varchar(35) NOT NULL,
   message varchar(255) NOT NULL,
   roomname varchar(255) NOT NULL,
   PRIMARY KEY (id)

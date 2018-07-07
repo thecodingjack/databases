@@ -3,29 +3,52 @@ var models = require('../models');
 module.exports = {
   messages: {
     get: function (req, res) {
-      models.messages.get((err, result)=> {
+      models.messages.get((err, results)=> {
         if (err) {
           res.status(500).end();
         } else {
-          res.send(result)
+          res.send(results)
         }
       })
       // res.send('hello world')
     }, // a function which handles a get request for all messages
     post: function (req, res) {
-      console.log('TEST HERE: ', req.body)
+      console.log('POST MESSAGE: ', req.body)
+      var params = [req.body.message,req.body.username,req.body.roomname]
+      models.messages.post(params,(err,results)=>{
+        if (err) {
+          res.status(500).end();
+        } else {
+          res.send(results)
+        }
+      })
     } // a function which handles posting a message to the database
   },
 
   users: {
     // Ditto as above
     get: function (req, res) {
-      console.log(res.send)
-      res.send('hello World')
-    },
+      models.users.get((err, results)=> {
+        if (err) {
+          res.status(500).end();
+        } else {
+          res.send(results)
+        }
+      })
+      // res.send('hello world')
+    }, // a function which handles a get request for all messages
     post: function (req, res) {
-      res.end()
-    }
+      console.log('POST USERS ', req.body)
+      var params = [req.body.username]
+      models.users.post(params,(err,results)=>{
+        console.log('PARAMS' , params)
+        if (err) {
+          res.status(500).end();
+        } else {
+          res.send(results)
+        }
+      })
+    } 
   }
 };
 

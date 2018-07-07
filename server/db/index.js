@@ -14,8 +14,11 @@ var databaseConnection = mysql.createConnection({
 });
 
 databaseConnection.connect(function (err) {
-    if (err) console.log(err);
-    // console.log('connected');
+    if (err) {
+        console.log('error connecting:' , err.stack);
+        return
+    }
+    console.log('connected', databaseConnection.threadId);
 })
 
 exports.databaseConnection = databaseConnection;

@@ -7,14 +7,14 @@ module.exports = {
         if (err) {
           res.status(500).end();
         } else {
-          res.send(results)
+          res.send({results})
         }
       })
       // res.send('hello world')
     }, // a function which handles a get request for all messages
     post: function (req, res) {
       console.log('POST MESSAGE: ', req.body)
-      var params = [req.body.message,req.body.username,req.body.roomname]
+      var params = [req.body.text,req.body.username,req.body.roomname]
       models.messages.post(params,(err,results)=>{
         if (err) {
           res.status(500).end();
@@ -32,7 +32,7 @@ module.exports = {
         if (err) {
           res.status(500).end();
         } else {
-          res.send(results)
+          res.send({results})
         }
       })
       // res.send('hello world')
